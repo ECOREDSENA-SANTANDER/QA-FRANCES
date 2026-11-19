@@ -294,6 +294,12 @@ function helper_close_product()
 */
 function helper_check_json_keywords(sco_json)
 {
+    //Guard against missing or failed JSON load (e.g. jQuery/ajax failed to load)
+    if (typeof sco_json === 'undefined' || sco_json === null) {
+        console.error("helper_check_json_keywords: received undefined/null sco_json");
+        return {};
+    }
+
     //Turn the sco object into a string
     sco_json = JSON.stringify(sco_json);
 
